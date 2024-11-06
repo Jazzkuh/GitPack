@@ -20,8 +20,11 @@ public class PlayerConnectionListener {
             if (packUrl == null) return;
             if (isActive(player, packUrl)) return;
 
-            ResourcePackInfo packInfo = this.getPackInfo(player, packUrl);
-            player.sendResourcePackOffer(packInfo);
+            try {
+                ResourcePackInfo packInfo = this.getPackInfo(player, packUrl);
+                player.sendResourcePackOffer(packInfo);
+            } catch (Exception ignored) {
+            }
         }).delay(player.getAppliedResourcePack() == null ? 250L : 0L, TimeUnit.MILLISECONDS).schedule();
     }
 
